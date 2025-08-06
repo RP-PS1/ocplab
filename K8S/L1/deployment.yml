@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-header
+  labels:
+    app: test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test
+  template:
+    metadata:
+      labels:
+        app: test
+    spec:
+      containers:
+        - name: py-container
+          image: "python:3.9.19"
+          command: ["python3"]
+          args: ["/app.py"]
+          volumeMounts:
+            - name: py-file
+              mountPath: /app.py
+              readOnly: false
+              subPath: app.py
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          env:
+            - name: PORT
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret
+                  key: port
+      volumes:
+        - name: py-file
+          configMap:
+            defaultMode: 420
+            name: py-file
