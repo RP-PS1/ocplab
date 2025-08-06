@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Awesome Container</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #2c3e50, #34495e); /* 세련된 그라데이션 배경 */
+            color: #ecf0f1;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .container {
+            padding: 40px;
+            border-radius: 15px;
+            background: rgba(44, 62, 80, 0.7); /* 투명도가 있는 배경 */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 2s ease-out; /* 등장 애니메이션 */
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: colorChange 5s infinite; /* 텍스트 색상 애니메이션 */
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            color: #bdc3c7;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes colorChange {
+            0% { color: #ecf0f1; }
+            50% { color: #1abc9c; } /* 중간에 색상 변경 */
+            100% { color: #ecf0f1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hello, World!</h1>
+        <p>Welcome to your awesome new container experience.</p>
+    </div>
+</body>
+</html>
