@@ -1,0 +1,47 @@
+apiVersion: operator.openshift.io/v1
+kind: IngressController
+metadata:
+  name: addtional-controller
+  namespace: openshift-ingress-operator
+spec:
+  clientTLS:
+    clientCA:
+      name: ""
+    clientCertificatePolicy: ""
+  domain: test.djkim.local
+  endpointPublishingStrategy:
+    hostNetwork:
+      httpPort: 33080
+      httpsPort: 33443
+      statsPort: 32936
+    type: HostNetwork
+  httpCompression: {}
+  httpEmptyRequestsPolicy: Respond
+  httpErrorCodePages:
+    name: ""
+  idleConnectionTerminationPolicy: Deferred
+  logging:
+    access:
+      destination:
+        type: Container
+      logEmptyRequests: Log
+  replicas: 3
+  routeSelector:
+    matchLabels:
+      route: additional
+  tlsSecurityProfile:
+    old: {}
+    type: Old
+  tuningOptions:
+    clientFinTimeout: 1s
+    clientTimeout: 300s
+    headerBufferBytes: 65536
+    headerBufferMaxRewriteBytes: 32768
+    maxConnections: -1
+    reloadInterval: 0s
+    serverFinTimeout: 1s
+    serverTimeout: 30s
+    threadCount: 4
+    tlsInspectDelay: 5s
+    tunnelTimeout: 1h
+

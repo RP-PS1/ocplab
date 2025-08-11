@@ -1,0 +1,22 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  annotations:
+    include.release.openshift.io/ibm-cloud-managed: "true"
+    include.release.openshift.io/self-managed-high-availability: "true"
+  name: tests
+  namespace: openshift
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+  - name: latest
+    annotations: null
+    from:
+      kind: DockerImage
+      name: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:712c43ef78c66e7ccc0ed833d6b9a5e348b03005e207ee55cb3921ae68eb3d2b
+    importPolicy:
+      importMode: Legacy
+      scheduled: true
+    referencePolicy:
+      type: Source

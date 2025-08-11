@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: test-httpd
+  name: test-httpd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-httpd
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: test-httpd
+    spec:
+      containers:
+      - image: registry.redhat.io/ubi8/httpd-24:latest
+        name: httpd-24
+        resources: {}
