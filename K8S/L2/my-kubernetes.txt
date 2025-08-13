@@ -1,3 +1,7 @@
-kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/refs/heads/master/daemonset/kubeadm-kuberouter.yaml
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/refs/heads/main/content/en/examples/application/nginx-app.yaml
+
+
+# Ingress Create
+kubectl create ingress test-ingress --rule="test-httpd.apps.k8s.local/*=test-httpd:8080"
 
