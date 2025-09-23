@@ -1,0 +1,30 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    maistra.io/mesh-generation: 2.6.9-1-2
+    openshift.io/host.generated: "true"
+  labels:
+    app: istio-ingressgateway
+    app.kubernetes.io/component: istio-ingress
+    app.kubernetes.io/instance: istio-system
+    app.kubernetes.io/managed-by: maistra-istio-operator
+    app.kubernetes.io/name: istio-ingress
+    app.kubernetes.io/part-of: istio
+    app.kubernetes.io/version: 2.6.9-1-2
+    istio: ingressgateway
+    maistra-version: 2.6.9
+    maistra.io/owner: istio-system
+    maistra.io/owner-name: basic
+    release: istio
+  name: openjdk-test01
+  namespace: istio-system
+spec:
+  host: openjdk-test01.apps.k-cluster.ocp.local
+  port:
+    targetPort: 8080
+  to:
+    kind: Service
+    name: istio-ingressgateway
+    weight: 100
+  wildcardPolicy: None

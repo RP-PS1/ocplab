@@ -1,0 +1,22 @@
+kind: Gateway
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: kblife-gateway-https
+  namespace: istio-system
+  labels:
+    app.kubernetes.io/instance: istio-gateway-https
+  annotations:
+spec:
+  servers:
+    - port:
+        number: 443
+        protocol: HTTPS
+        name: https
+      hosts:
+        - openjdk-test01.apps.c.ocp.local
+        - openjdk-test01-v2.apps.c.ocp.local
+      tls:
+        mode: SIMPLE
+        credentialName: istio-credential-ssl
+  selector:
+    istio: ingressgateway

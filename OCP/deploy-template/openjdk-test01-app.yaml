@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: openjdk-test01-v1
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: kblife
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: deploy-template/openjdk-v1
+    repoURL: http://git-demo.ocp.local:8080/root/demo.git
+    targetRevision: main
+

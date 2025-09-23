@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: openjdk-test01-v2
+    app.kubernetes.io/component: openjdk-test01-v2
+    app.kubernetes.io/instance: openjdk-test01-v2
+    app.kubernetes.io/name: openjdk-test01-v2
+    app.kubernetes.io/part-of: back-end
+    app.openshift.io/runtime: openjdk
+    app.openshift.io/runtime-namespace: los-test01
+  name: openjdk-test01-v2
+  namespace: kblife
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: openjdk-test01-v2
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        openshift.io/generated-by: OpenShiftWebConsole
+        sidecar.istio.io/inject: 'true'
+        sidecar.istio.io/logLevel: debug
+      creationTimestamp: null
+      labels:
+        app: openjdk-test01-v2
+        deployment: openjdk-test01-v2
+        version: v2
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: los-global-cm
+        image: docker.io/wspark83/openjdk-8:springboot-info
+          #image: docker.io/library/httpd:latest
+        imagePullPolicy: Always
+        name: openjdk-test01-v2
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /api/library/info/1
+            port: 8080
+            scheme: HTTP
+          periodSeconds: 20
+          successThreshold: 1
+          timeoutSeconds: 1
+          initialDelaySeconds: 10
+        name: openjdk-test01-v2
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /api/library/info/1
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 20
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        volumeMounts:
+        - name: openjdk-test01-log
+          mountPath: /LOG
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: openjdk-test01-log
+          persistentVolumeClaim:
+            claimName: openjdk-test01-v2-log-pvc
+

@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: openjdk-test01-v1
+    app.kubernetes.io/component: openjdk-test01-v1
+    app.kubernetes.io/instance: openjdk-test01-v1
+    app.kubernetes.io/name: openjdk-test01-v1
+    app.kubernetes.io/part-of: back-end
+    app.openshift.io/runtime-version: v0.1
+  name: openjdk-test01-v1
+  namespace: kblife
+spec:
+  ports:
+  - name: http
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: openjdk-test01-v1
+    deployment: openjdk-test01-v1
+  sessionAffinity: None
+  type: ClusterIP
+

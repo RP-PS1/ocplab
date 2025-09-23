@@ -1,0 +1,11 @@
+apiVersion: v1
+data:
+  LOS_OPENJDK_TEST01_SRV_URL: http://openjdk-test01-v1.kblife.svc.cluster.local:8080/
+  LOS_OPENJDK_TEST01_V2_SRV_URL: http://openjdk-test01-v2.kblife.svc.cluster.local:8080/
+  LOS_OPENJDK_TEST02_SRV_URL: http://openjdk-test02-v1.kblife.svc.cluster.local:8080/
+  LOS_OPENJDK_TEST02_V2_SRV_URL: http://openjdk-test02-v2.kblife.svc.cluster.local:8080/
+immutable: false
+kind: ConfigMap
+metadata:
+  name: los-global-cm
+  namespace: kblife
