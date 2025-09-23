@@ -5,7 +5,7 @@ metadata:
   namespace: kblife
 spec:
   hosts:
-  - "openjdk-test01-v2.apps.k-cluster.ocp.local"
+  - "openjdk-test01-v2.apps.rp.demo.cluster
   gateways:
   - istio-system/kblife-gateway-http
   http:

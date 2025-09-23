@@ -20,7 +20,7 @@ metadata:
   name: openjdk-test01-v2
   namespace: istio-system
 spec:
-  host: openjdk-test01-v2.apps.k-cluster.ocp.local
+  host: openjdk-test01-v2.apps.rp.demo.cluster
   port:
     targetPort: 8080
   to:
