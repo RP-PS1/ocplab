@@ -1,0 +1,14 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: tomcat7
+  namespace: guest2
+spec:
+  host: tomcat7-guest2.apps.rp.demo.cluster
+  to:
+    kind: Service
+    name: tomcat7
+    weight: 100
+  port:
+    targetPort: 8080
+  wildcardPolicy: None
