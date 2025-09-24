@@ -39,7 +39,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: los-global-cm
-        image: docker.io/tomcat:jdk17
+        image: registry.redhat.io/jboss-webserver-6/jws61-openjdk17-openshift-rhel8:6.1.2-2
         imagePullPolicy: Always
         name: openjdk-test01-v1
         ports:

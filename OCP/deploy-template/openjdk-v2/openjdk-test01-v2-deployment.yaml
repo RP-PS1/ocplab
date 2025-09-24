@@ -39,7 +39,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: los-global-cm
-        image: docker.io/wspark83/openjdk-8:springboot-info
+        image: registry.redhat.io/jboss-webserver-6/jws61-openjdk17-openshift-rhel8:6.1.2-2
           #image: docker.io/library/httpd:latest
         imagePullPolicy: Always
         name: openjdk-test01-v2
